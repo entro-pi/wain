@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/Archangel_Female/idle_sword_3.png" type="Texture" id=1]
+[ext_resource path="res://sprites/Archangel_Female/idle_sword_2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Archangel_Female/idle_sword_1.png" type="Texture" id=3]
+[ext_resource path="res://ArchangelIdle.gd" type="Script" id=4]
+[ext_resource path="res://sprites/Archangel_Female/dash_1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Archangel_Female/dash_2.png" type="Texture" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle-dash"
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "dash-left"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "", false ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "stop"
+} ]
+}
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[node name="woot" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 377, 145 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D/CollisionShape2D" groups=[
+"animation",
+]]
+root_node = NodePath("ArchangelIdle")
+anims/idle-dash = SubResource( 2 )
+
+[node name="ArchangelIdle" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
+position = Vector2( 378, 150 )
+frames = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="RigidBody2D/CollisionShape2D"]
+root_node = NodePath("ArchangelDashLeft")
+anims/dash-left = SubResource( 4 )
+
+[node name="ArchangelDashLeft" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer2"]
+position = Vector2( 182, 140 )
+frames = SubResource( 5 )
