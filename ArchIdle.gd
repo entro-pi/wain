@@ -7,6 +7,7 @@ extends AnimatedSprite
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_input(true)
+	show()
 	play()
 	pass # Replace with function body.
 
@@ -19,8 +20,18 @@ func _input(event):
 		if event.scancode == KEY_D:
 			stop()
 			hide()
+		if event.scancode == KEY_S:
+			stop()
+			hide()
+		if event.scancode == KEY_W:
+			stop()
+			hide()
+
+		#Add a way to tell what direction the player is facing
+		if event.scancode == KEY_E:
+			stop()
+			hide()
 	elif event is InputEventKey and event.pressed == false:
 		show()
 		play()
 			
-
