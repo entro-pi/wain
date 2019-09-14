@@ -27,4 +27,6 @@ func _input(event):
 		if event.scancode == KEY_E:
 			show()
 			play()
+		if event.scancode == KEY_E and event.pressed == false:
+			set_frame(0)
 		

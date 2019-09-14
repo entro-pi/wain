@@ -25,4 +25,5 @@ func _input(event):
 	elif event is InputEventKey and event.pressed == false:
 		stop()
 		hide()
-
+		set_frame(0)
+		
