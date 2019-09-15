@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://sprites/Archangel_Female/idle_sword_3.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Archangel_Female/idle_sword_2.png" type="Texture" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://ArchIdle.gd" type="Script" id=20]
 [ext_resource path="res://sounds/Robot Destruction.wav" type="AudioStream" id=21]
 [ext_resource path="res://LightningAttack.gd" type="Script" id=22]
+[ext_resource path="res://ArchIdle2.gd" type="Script" id=23]
+[ext_resource path="res://ArchIdle3.gd" type="Script" id=24]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -36,7 +38,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
@@ -44,7 +46,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 13 ), ExtResource( 4 ) ],
 "loop": true,
@@ -52,7 +54,7 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
@@ -60,9 +62,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="Environment" id=7]
 
-[sub_resource type="ImageTexture" id=7]
+[sub_resource type="ImageTexture" id=8]
 
 [node name="woot" type="Node2D"]
 
@@ -87,33 +89,45 @@ script = ExtResource( 10 )
 [node name="ArchangelDashLeft" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
 position = Vector2( 150, 150 )
 z_index = 1
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 script = ExtResource( 7 )
 
 [node name="ArchangelDashRight" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
 position = Vector2( 150, 150 )
 z_index = 1
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 flip_h = true
 script = ExtResource( 9 )
 
 [node name="ArchAttackLeftFX" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
 position = Vector2( 150, 150 )
 z_index = 1
-frames = SubResource( 8 )
+frames = SubResource( 5 )
 script = ExtResource( 16 )
 
 [node name="ArchIdle" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
 position = Vector2( 150, 150 )
 z_index = 1
-frames = SubResource( 9 )
+frames = SubResource( 6 )
 script = ExtResource( 20 )
 
+[node name="ArchIdleUP" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
+position = Vector2( 150, 150 )
+z_index = 1
+frames = SubResource( 6 )
+script = ExtResource( 23 )
+
+[node name="ArchIdleDown" type="AnimatedSprite" parent="RigidBody2D/CollisionShape2D/AnimationPlayer"]
+position = Vector2( 150, 150 )
+z_index = 1
+frames = SubResource( 6 )
+script = ExtResource( 24 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+environment = SubResource( 7 )
 
 [node name="background" type="Sprite" parent="WorldEnvironment"]
-texture = SubResource( 7 )
+texture = SubResource( 8 )
 
 [node name="village" type="Sprite" parent="WorldEnvironment/background"]
 position = Vector2( 11, 485 )
